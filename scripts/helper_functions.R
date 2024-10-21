@@ -121,6 +121,13 @@ workshops <- {c_workshops_id}
 
 results <- read_csv({double_quote(data)}) %>% 
   filter(workshop %in% workshops)
+  
+# Fix comma separator
+results <- results %>% 
+  mutate(findout_select.pre = str_replace_all(
+  findout_select.pre, 
+  "Twitter, Facebook, etc.", 
+  "Twitter; Facebook; etc."))
 
 pre_survey <- results %>%
   select(ends_with(".pre"))
@@ -162,7 +169,8 @@ layout_columns(
 
 ```{{r}}
 depts <- results %>% select(dept_select.pre) %>% 
-  separate_rows(dept_select.pre, sep=",") %>% 
+  separate_rows(dept_select.pre, sep=",") %>%
+  mutate(dept_select.pre = str_trim(dept_select.pre)) %>%
   count(dept_select.pre, name = "count") %>% 
   mutate(percent = (count / (n_total - n_post)) * 100,
          text = sprintf("%.0f (%.0f%%)", count, percent))
@@ -206,7 +214,8 @@ ggplot(other_depts, aes(y=reorder(dept_other.pre, count), x=count)) +
 
 ```{{r}}
 ocup <- results %>% select(occupation.pre) %>% 
-  separate_rows(occupation.pre, sep=",") %>% 
+  separate_rows(occupation.pre, sep=",") %>%
+  mutate(occupation.pre = str_trim(occupation.pre)) %>%
   count(occupation.pre, name = "count") %>% 
   drop_na() %>% 
   mutate(percent = (count / (n_total - n_post)) * 100,
@@ -230,6 +239,7 @@ ggplot(ocup, aes(y=reorder(occupation.pre, count), x=count)) +
 ```{{r}}
 motiv <- results %>% select(motivation_select.pre) %>% 
   separate_rows(motivation_select.pre, sep=",")  %>% 
+  mutate(motivation_select.pre = str_trim(motivation_select.pre)) %>%
   count(motivation_select.pre, name = "count") %>% 
   drop_na() %>% 
   mutate(percent = (count / (n_total - n_post)) * 100,
@@ -253,6 +263,7 @@ ggplot(motiv, aes(y=reorder(motivation_select.pre, count), x=count)) +
 ```{{r}}
 findw <- results %>% select(findout_select.pre) %>% 
   separate_rows(findout_select.pre, sep=",")  %>% 
+  mutate(findout_select.pre = str_trim(findout_select.pre)) %>%
   count(findout_select.pre, name = "count") %>% 
   drop_na() %>% 
   mutate(percent = (count / (n_total - n_post)) * 100,
