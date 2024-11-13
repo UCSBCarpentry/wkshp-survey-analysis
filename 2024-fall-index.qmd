@@ -9,5 +9,7 @@ editor: visual
 
 ## Reports by Workshop
 
+-   [2024-11-12 Qualdatanalysis](2024-11-12-fall-qualdatanalysis.html)
+-   [2024-11-05 Webscraping](2024-11-05-fall-webscraping.html)
 -   [2024-10-22 Git](2024-10-22-fall-git.html)
 -   [2024-10-08 R](2024-10-08-fall-r.html)
