@@ -9,5 +9,6 @@ editor: visual
 
 ## Reports by Workshop
 
+-   [2025-01-23 Geospatial](2025-01-23-winter-geospatial.html)
 -   [2025-01-15 Containers](2025-01-15-winter-containers.html)
 -   [2025-01-14 Python](2025-01-14-winter-python.html)

@@ -21,7 +21,7 @@ library(bsicons)
 source("scripts/helper_functions.R")
 
 # list of workshop IDs to filter results
-workshops <- c("2025-01-14-ucsb-python")
+workshops <- c("2025-01-23-ucsb-geospatial")
 
 results <- read_csv("data-joined/all_workshops.csv") %>% 
   filter(workshop %in% workshops)
@@ -39,7 +39,7 @@ pre_survey <- results %>%
 post_survey <- results %>%
   select(ends_with(".post"))
 
-shoreline <- read_csv("data/shoreline/2025-01-14-ucsb-python-shoreline.csv") %>% 
+shoreline <- read_csv("data/shoreline/2025-01-23-ucsb-geospatial-shoreline.csv") %>% 
   filter(`RSVP'ed`=='Yes')
 
 n_pre <- sum(apply(post_survey, 1, function(row) all(is.na(row))))
