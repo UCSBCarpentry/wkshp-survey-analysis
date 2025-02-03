@@ -2,13 +2,14 @@
 format: html
 editor: visual
 ---
-  
+
 # Report for all Winter 2025 workshops
-  
+
 -   [2025 Winter - All Workshops](2025-winter-all.html)
 
 ## Reports by Workshop
 
+-   [2025-02-03 Computing](2025-02-03-winter-computing.html)
 -   [2025-01-23 Geospatial](2025-01-23-winter-geospatial.html)
 -   [2025-01-15 Containers](2025-01-15-winter-containers.html)
 -   [2025-01-14 Python](2025-01-14-winter-python.html)
