@@ -8,11 +8,12 @@ format:
      df-print: kable
 ---
 
-
 ## Number of responses
 
 ```{r}
 #| message: false
+#| warning: false
+
 library(tidyverse)
 library(bslib)
 library(shiny)
@@ -38,6 +39,9 @@ pre_survey <- results %>%
 post_survey <- results %>%
   select(ends_with(".post"))
 
+shoreline <- read_csv("data/shoreline/2025-01-15-ucsb-containers-shoreline.csv") %>% 
+  filter(`RSVP'ed`=='Yes')
+
 n_pre <- sum(apply(post_survey, 1, function(row) all(is.na(row))))
 n_post <- sum(apply(pre_survey, 1, function(row) all(is.na(row))))
 n_total <- nrow(results)
@@ -45,7 +49,12 @@ n_both <- nrow(results) - n_pre - n_post
 
 layout_columns(
   value_box(
-    title = "Total responses", value = n_total, ,
+    title = "RSVP'ed Yes - Shoreline", value = nrow(shoreline), ,
+    theme = NULL, showcase = bs_icon("card-checklist"), showcase_layout = "left center",
+    full_screen = FALSE, fill = TRUE, height = NULL
+  ),
+  value_box(
+    title = "Total survey responses", value = n_total, ,
     theme = NULL, showcase = bs_icon("people-fill"), showcase_layout = "left center",
     full_screen = FALSE, fill = TRUE, height = NULL
   ),
@@ -65,20 +74,23 @@ layout_columns(
     full_screen = FALSE, fill = TRUE, height = NULL
   )
 )
-
 ```
 
-## Departments
+## Departments (Shoreline info)
 
 ```{r}
-depts <- results %>% select(dept_select.pre) %>% 
+#| message: false
+#| warning: false
+name_var <- shoreline %>% select(starts_with("Please")) %>% names()
+depts_2 <- shoreline %>% rename(dept_select.pre = name_var) %>% 
+  select(dept_select.pre) %>% 
   separate_rows(dept_select.pre, sep=",") %>%
   mutate(dept_select.pre = str_trim(dept_select.pre)) %>%
   count(dept_select.pre, name = "count") %>% 
-  mutate(percent = (count / (n_total - n_post)) * 100,
+  mutate(percent = (count / nrow(shoreline)) * 100,
          text = sprintf("%.0f (%.0f%%)", count, percent))
 
-ggplot(depts, aes(y=reorder(dept_select.pre, count), x=count)) +
+ggplot(depts_2, aes(y=reorder(dept_select.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
@@ -88,43 +100,23 @@ ggplot(depts, aes(y=reorder(dept_select.pre, count), x=count)) +
       panel.grid.minor = element_blank(),
       panel.grid.major.y = element_blank()
       ) +
-    expand_limits(x = c(0,max(depts$count)*1.1))
+    expand_limits(x = c(0,max(depts_2$count)*1.1))
 ```
 
-### "Other" Departments
+## Current occupation / Career stage (Shoreline info)
 
 ```{r}
-other_depts <- results %>% 
-  count(dept_other.pre, name = "count") %>% 
-  drop_na() %>% 
-  mutate(percent = (count / (n_total - n_post)) * 100,
-         text = sprintf("%.0f (%.0f%%)", count, percent))
-
-ggplot(other_depts, aes(y=reorder(dept_other.pre, count), x=count)) +
-    geom_col() +
-    geom_label(aes(label = text, hjust = -0.1),
-               size = 3) +
-    labs(x = "# respondents", y = element_blank()) + 
-    theme_minimal() +
-    theme(
-      panel.grid.minor = element_blank(),
-      panel.grid.major.y = element_blank()
-      ) +
-    expand_limits(x = c(0,max(other_depts$count)*1.1))
-```
-
-## Current occupation / Career stage
-
-```{r}
-ocup <- results %>% select(occupation.pre) %>% 
+#| message: false
+name_var <- shoreline %>% select(starts_with("What is")) %>% names()
+ocup_2 <- shoreline %>% rename(occupation.pre = name_var) %>% 
+  select(occupation.pre) %>% 
   separate_rows(occupation.pre, sep=",") %>%
   mutate(occupation.pre = str_trim(occupation.pre)) %>%
   count(occupation.pre, name = "count") %>% 
-  drop_na() %>% 
-  mutate(percent = (count / (n_total - n_post)) * 100,
+  mutate(percent = (count / nrow(shoreline)) * 100,
          text = sprintf("%.0f (%.0f%%)", count, percent))
 
-ggplot(ocup, aes(y=reorder(occupation.pre, count), x=count)) +
+ggplot(ocup_2, aes(y=reorder(occupation.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
@@ -134,7 +126,7 @@ ggplot(ocup, aes(y=reorder(occupation.pre, count), x=count)) +
       panel.grid.minor = element_blank(),
       panel.grid.major.y = element_blank()
       ) +
-    expand_limits(x = c(0,max(ocup$count)*1.2))
+    expand_limits(x = c(0,max(ocup_2$count)*1.2))
 ```
 
 ## Motivation - Why are you participating in this workshop?
@@ -349,4 +341,3 @@ results %>%
   select(workshop, suggest_topics.post) %>% 
   drop_na()
 ```
-
