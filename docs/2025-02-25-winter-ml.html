@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>UCSB Carpentry Workshop Survey Responses - Winter 2025 Intermediate R Workshop Survey Responses</title>
+<title>UCSB Carpentry Workshop Survey Responses - Winter 2025 Machine Learning Workshop Survey Responses</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Winter 2025 Intermediate R Workshop Survey Responses</h1>
+<h1 class="title">Winter 2025 Machine Learning Workshop Survey Responses</h1>
 </div>
 
 
@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/helper_functions.R"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># list of workshop IDs to filter results</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>workshops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2025-02-18-ucsb-intermediater"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>workshops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2025-02-25-ucsb-ml"</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-joined/all_workshops.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(workshop <span class="sc">%in%</span> workshops)</span>
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>post_survey <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">".post"</span>))</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>shoreline <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/shoreline/2025-02-19-ucsb-intermediater-shoreline.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>shoreline <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/shoreline/2025-02-25-ucsb-ml-shoreline.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">RSVP'ed</span><span class="st">`</span><span class="sc">==</span><span class="st">'Yes'</span>)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>n_pre <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(post_survey, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">all</span>(<span class="fu">is.na</span>(row))))</span>
@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">RSVP'ed Yes - Shoreline</p>
-<p class="value-box-value">18</p>
+<p class="value-box-value">53</p>
 </div>
 </div>
 </div>
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-people-fill " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Total survey responses</p>
-<p class="value-box-value">12</p>
+<p class="value-box-value">7</p>
 </div>
 </div>
 </div>
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-expand-vertical " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path d="M8 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2ZM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8Z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Both pre- and post-</p>
-<p class="value-box-value">3</p>
+<p class="value-box-value">0</p>
 </div>
 </div>
 </div>
@@ -301,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrow-right-short " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Only post-workshop</p>
-<p class="value-box-value">2</p>
+<p class="value-box-value">0</p>
 </div>
 </div>
 </div>
@@ -341,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2025-02-25-winter-ml_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2025-02-25-winter-ml_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -410,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2025-02-25-winter-ml_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -444,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2025-02-25-winter-ml_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -463,8 +463,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 90%">
+<col style="width: 14%">
+<col style="width: 85%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -474,36 +474,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I want to increase my comfort with R coding language and skills.</td>
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">Main tools and techniques to do machine learning in Python.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">Further advance my comprehension of R and how to leverage it for Data Analysis as it applies to Project Managment and Data Wrangling.</td>
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">How different ML paradigms compare for solving different problems, and when to use them</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">Advance my R skills and feel more comfortable processing statistical analysis using R</td>
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">I would like to learn how to use machine learning with python</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I hope to become more familiar with manipulating raw data in R (such as pulling out certain columns of data, averaging raw values and plotting means with standard errors, etc) and using new libraries for simple statistical analysis (ANOVA, regressions)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">becoming proficient at For Loops</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I’d like to learn how to better store and access the various files that I am working with and creating, especially when I am learning how to write the code and my script files are often filled with my trials and errors. I want to gain confidence to delete the stuff that didn’t work as intended</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">skills in R that will help me get a new job</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">To gain confidence with writing for loops for diverse scenarios</td>
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">Better understanding of the best scenarios to use machine learning and how to best implement the analysis in R.</td>
 </tr>
 </tbody>
 </table>
@@ -571,10 +555,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
 <span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: No shared levels found between `names(values)` of the manual scale and the
+data's fill values.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2025-02-25-winter-ml_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -585,18 +573,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, instructor_example.post) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, instructor_example.post) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 87%">
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th style="text-align: left;">workshop</th>
@@ -604,26 +588,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">The instructors did a good job of slowly going through the code and providing a few tips that novices can use.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">The instructors were so familiar with the material that it was hard for them to step outside the mindset of a programmer and see how someone without full training in coding might need additional steps</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I gained more familiarity with the structure of for loops and the instances when a function may be better than a for loop and when using functions in dplyr may actually achieve coding goals quicker than a for loop.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">one on one time and super friendly</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">They had clear and concise lessons and had an effective system for ensuring everyone was keeping up with the material.</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -635,45 +599,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for all respondents (only_matched=FALSE)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>},</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for only matched respondents in pre and post (only_matched=TRUE)</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for all respondents (only_matched=FALSE)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>},</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="cell-output cell-output-stderr">
+<pre><code>Could not do the plots as there are no pre or post results to show</code></pre>
 </div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for only matched respondents in pre and post (only_matched=TRUE)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Could not do the plots as there are no pre or post results to show</code></pre>
 </div>
 </div>
 </section>
@@ -682,18 +638,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_strengths.post) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_strengths.post) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th style="text-align: left;">workshop</th>
@@ -701,26 +653,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">The opportunity to see R in action and think through how to solve problems. There was help when you needed it.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">friendly, responsive to questions</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I liked that the workshop alternated instructors to provide variety in the way information was shared and taught. I appreciated that there were challenges and also a short break during the workshop.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">just glad you have them. keep em coming</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">Simple yet effective lessons, used real world data with practical applications as a basis for example.</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -732,18 +664,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_improved.post) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_improved.post) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 94%">
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th style="text-align: left;">workshop</th>
@@ -751,26 +679,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I have a lot of experience with data analysis (in another coding language), so I was able to follow pretty closely what was going on. I felt like others might not have had as much experience, so they were lost as to what the goal of some of the commands were. It might be good to think carefully about where some people might not know what the goal of a command is. Perhaps you expect people to come in with that knowledge, which is fine, but it was the sense I got from some of the questions that were asked.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">if an instructor was coming from a non-coding background they might be able to present the material in a different way. Also it was hard for me to think about immediate applications for my data project. I would like to come prepared with my own data and write code that is pertinent, as i had a hard time making the leap of how I would apply it easily</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I think something that could be useful for folks to walk away with are more examples utilizing for loops, functions and if and else statements. So maybe, creating like a part 2 for the workshop to get into more details and examples.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">more of them, evenings might also be good</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">I understand the focus was on developing coding skills, but I hope in future lessons we’re able to follow through on the example to see the end result of the practical application for the skills we’ve learned.</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -782,36 +690,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>orderedq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nps <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(recommend_group.post, recommende_score.post, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">recommend_group.post =</span> <span class="fu">factor</span>(recommend_group.post, <span class="at">levels =</span> orderedq),</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">percent =</span> (count<span class="sc">/</span><span class="fu">sum</span>(count)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>nps <span class="sc">%&gt;%</span> </span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>recommende_score.post, <span class="at">y=</span>count, <span class="at">fill=</span>recommend_group.post)) <span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span> <span class="ot">=</span> <span class="st">"#af8dc3"</span>, <span class="st">"Passive"</span> <span class="ot">=</span> <span class="st">"#f7f7f7"</span>, <span class="st">"Promoter"</span> <span class="ot">=</span> <span class="st">"#7fbf7b"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>), <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPS Score"</span>, <span class="at">y =</span> <span class="st">"# respondents"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Number of responses: "</span>, <span class="fu">sum</span>(nps<span class="sc">$</span>count), <span class="st">"</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean score: "</span>, <span class="fu">format</span>(<span class="fu">weighted.mean</span>(nps<span class="sc">$</span>recommende_score.post, nps<span class="sc">$</span>count), <span class="at">digits =</span> <span class="dv">3</span>))) <span class="sc">+</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>),</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(nps<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>orderedq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>nps <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(recommend_group.post, recommende_score.post, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">recommend_group.post =</span> <span class="fu">factor</span>(recommend_group.post, <span class="at">levels =</span> orderedq),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">percent =</span> (count<span class="sc">/</span><span class="fu">sum</span>(count)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>nps <span class="sc">%&gt;%</span> </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>recommende_score.post, <span class="at">y=</span>count, <span class="at">fill=</span>recommend_group.post)) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span> <span class="ot">=</span> <span class="st">"#af8dc3"</span>, <span class="st">"Passive"</span> <span class="ot">=</span> <span class="st">"#f7f7f7"</span>, <span class="st">"Promoter"</span> <span class="ot">=</span> <span class="st">"#7fbf7b"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>), <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPS Score"</span>, <span class="at">y =</span> <span class="st">"# respondents"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Number of responses: "</span>, <span class="fu">sum</span>(nps<span class="sc">$</span>count), <span class="st">"</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean score: "</span>, <span class="fu">format</span>(<span class="fu">weighted.mean</span>(nps<span class="sc">$</span>recommende_score.post, nps<span class="sc">$</span>count), <span class="at">digits =</span> <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>),</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(nps<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in max(nps$count): no non-missing arguments to max; returning -Inf</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: No shared levels found between `names(values)` of the manual scale and the
+data's fill values.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2025-02-19-winter-intermediater_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2025-02-25-winter-ml_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -822,18 +737,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, suggest_topics.post) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, suggest_topics.post) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 90%">
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th style="text-align: left;">workshop</th>
@@ -841,22 +752,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">Any useful and potentially complex commands could be good to focus on. I thought that this was well-paced and didn’t try to do too much. I found it helpful.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">programming for non-programmers? :)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">none at this time, thank you</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
-<td style="text-align: left;">Intermediate / advanced topics pertaining to geospatial and environmental data analysis. Combining R with geospatial softeare like ArcGIS and QGIS. Rendering models and point clouds from photogrammetric / LiDAR survey. Data collection and preparation of raw sensor data.</td>
-</tr>
 </tbody>
 </table>
 </div>

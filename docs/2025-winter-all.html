@@ -174,67 +174,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyverse' was built under R version 4.4.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.4.2</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bsicons)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/helper_functions.R"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># list of workshop IDs to filter results</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>workshops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2025-01-23-ucsb-geospatial"</span>, <span class="st">"2025-01-15-ucsb-containers"</span>, <span class="st">"2025-01-14-ucsb-python"</span>, <span class="st">"2025-02-03-ucsb-computing"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-joined/all_workshops.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(workshop <span class="sc">%in%</span> workshops)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix comma separator</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">findout_select.pre =</span> <span class="fu">str_replace_all</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  findout_select.pre, </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Twitter, Facebook, etc."</span>, </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Twitter; Facebook; etc."</span>))</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>pre_survey <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">".pre"</span>))</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>post_survey <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">".post"</span>))</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>n_pre <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(post_survey, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">all</span>(<span class="fu">is.na</span>(row))))</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>n_post <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(pre_survey, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">all</span>(<span class="fu">is.na</span>(row))))</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>n_total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(results)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>n_both <span class="ot">&lt;-</span> <span class="fu">nrow</span>(results) <span class="sc">-</span> n_pre <span class="sc">-</span> n_post</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">layout_columns</span>(</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total responses"</span>, <span class="at">value =</span> n_total, ,</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="cn">NULL</span>, <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"people-fill"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Both pre- and post-"</span>, <span class="at">value =</span> n_both, , <span class="at">theme =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"arrows-expand-vertical"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Only pre-workshop"</span>, <span class="at">value =</span> n_pre, ,</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="cn">NULL</span>, <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"arrow-left-short"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Only post-workshop"</span>, <span class="at">value =</span> n_post, , <span class="at">theme =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"arrow-right-short"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bsicons)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/helper_functions.R"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># list of workshop IDs to filter results</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>workshops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2025-01-23-ucsb-geospatial"</span>, <span class="st">"2025-01-15-ucsb-containers"</span>, <span class="st">"2025-01-14-ucsb-python"</span>, <span class="st">"2025-02-03-ucsb-computing"</span>, <span class="st">"2025-02-18-ucsb-intermediater"</span>, <span class="st">"2025-02-25-ucsb-ml"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-joined/all_workshops.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(workshop <span class="sc">%in%</span> workshops)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix comma separator</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">findout_select.pre =</span> <span class="fu">str_replace_all</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  findout_select.pre, </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Twitter, Facebook, etc."</span>, </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Twitter; Facebook; etc."</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>pre_survey <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">".pre"</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>post_survey <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">".post"</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>n_pre <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(post_survey, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">all</span>(<span class="fu">is.na</span>(row))))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>n_post <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(pre_survey, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">all</span>(<span class="fu">is.na</span>(row))))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>n_total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(results)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>n_both <span class="ot">&lt;-</span> <span class="fu">nrow</span>(results) <span class="sc">-</span> n_pre <span class="sc">-</span> n_post</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">layout_columns</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total responses"</span>, <span class="at">value =</span> n_total, ,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="cn">NULL</span>, <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"people-fill"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Both pre- and post-"</span>, <span class="at">value =</span> n_both, , <span class="at">theme =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"arrows-expand-vertical"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Only pre-workshop"</span>, <span class="at">value =</span> n_pre, ,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="cn">NULL</span>, <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"arrow-left-short"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Only post-workshop"</span>, <span class="at">value =</span> n_post, , <span class="at">theme =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">showcase =</span> <span class="fu">bs_icon</span>(<span class="st">"arrow-right-short"</span>), <span class="at">showcase_layout =</span> <span class="st">"left center"</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">height =</span> <span class="cn">NULL</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <bslib-layout-columns class="bslib-grid grid bslib-mb-spacing html-fill-item" data-require-bs-caller="layout_columns()" data-require-bs-version="5">
@@ -245,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-people-fill " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Total responses</p>
-<p class="value-box-value">95</p>
+<p class="value-box-value">115</p>
 </div>
 </div>
 </div>
@@ -259,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-expand-vertical " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path d="M8 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2ZM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8Z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Both pre- and post-</p>
-<p class="value-box-value">20</p>
+<p class="value-box-value">25</p>
 </div>
 </div>
 </div>
@@ -273,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrow-left-short " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Only pre-workshop</p>
-<p class="value-box-value">59</p>
+<p class="value-box-value">71</p>
 </div>
 </div>
 </div>
@@ -287,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrow-right-short " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Only post-workshop</p>
-<p class="value-box-value">16</p>
+<p class="value-box-value">19</p>
 </div>
 </div>
 </div>
@@ -303,24 +294,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>depts <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(dept_select.pre) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(dept_select.pre, <span class="at">sep=</span><span class="st">","</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dept_select.pre =</span> <span class="fu">str_trim</span>(dept_select.pre)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dept_select.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(depts, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(dept_select.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span>  </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(depts<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>depts <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(dept_select.pre) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(dept_select.pre, <span class="at">sep=</span><span class="st">","</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dept_select.pre =</span> <span class="fu">str_trim</span>(dept_select.pre)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dept_select.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(depts, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(dept_select.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span>  </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(depts<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -335,23 +326,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>other_depts <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dept_other.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(other_depts, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(dept_other.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(other_depts<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>other_depts <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dept_other.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(other_depts, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(dept_other.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(other_depts<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -368,25 +359,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ocup <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(occupation.pre) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(occupation.pre, <span class="at">sep=</span><span class="st">","</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">occupation.pre =</span> <span class="fu">str_trim</span>(occupation.pre)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(occupation.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ocup, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(occupation.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(ocup<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ocup <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(occupation.pre) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(occupation.pre, <span class="at">sep=</span><span class="st">","</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">occupation.pre =</span> <span class="fu">str_trim</span>(occupation.pre)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(occupation.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ocup, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(occupation.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(ocup<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -402,25 +393,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>motiv <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(motivation_select.pre) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(motivation_select.pre, <span class="at">sep=</span><span class="st">","</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">motivation_select.pre =</span> <span class="fu">str_trim</span>(motivation_select.pre)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(motivation_select.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(motiv, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(motivation_select.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(motiv<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>motiv <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(motivation_select.pre) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(motivation_select.pre, <span class="at">sep=</span><span class="st">","</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">motivation_select.pre =</span> <span class="fu">str_trim</span>(motivation_select.pre)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(motivation_select.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(motiv, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(motivation_select.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(motiv<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -436,25 +427,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>findw <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(findout_select.pre) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(findout_select.pre, <span class="at">sep=</span><span class="st">","</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">findout_select.pre =</span> <span class="fu">str_trim</span>(findout_select.pre)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(findout_select.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findw, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(findout_select.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(findw<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>findw <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> <span class="fu">select</span>(findout_select.pre) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(findout_select.pre, <span class="at">sep=</span><span class="st">","</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">findout_select.pre =</span> <span class="fu">str_trim</span>(findout_select.pre)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(findout_select.pre, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> (n_total <span class="sc">-</span> n_post)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findw, <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">reorder</span>(findout_select.pre, count), <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"# respondents"</span>, <span class="at">y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(findw<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -470,16 +461,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, hopes.pre) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, hopes.pre) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 91%">
+<col style="width: 9%">
+<col style="width: 90%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -708,6 +699,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Access the servers to perform heavy computing</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I want to increase my comfort with R coding language and skills.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">Further advance my comprehension of R and how to leverage it for Data Analysis as it applies to Project Managment and Data Wrangling.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">Advance my R skills and feel more comfortable processing statistical analysis using R</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I hope to become more familiar with manipulating raw data in R (such as pulling out certain columns of data, averaging raw values and plotting means with standard errors, etc) and using new libraries for simple statistical analysis (ANOVA, regressions)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">becoming proficient at For Loops</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I’d like to learn how to better store and access the various files that I am working with and creating, especially when I am learning how to write the code and my script files are often filled with my trials and errors. I want to gain confidence to delete the stuff that didn’t work as intended</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">skills in R that will help me get a new job</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">To gain confidence with writing for loops for diverse scenarios</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">Main tools and techniques to do machine learning in Python.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">How different ML paradigms compare for solving different problems, and when to use them</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">I would like to learn how to use machine learning with python</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-25-ucsb-ml</td>
+<td style="text-align: left;">Better understanding of the best scenarios to use machine learning and how to best implement the analysis in R.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -719,60 +758,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>orderedq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Strongly Disagree"</span>, <span class="st">"Somewhat Disagree"</span>, <span class="st">"Neither Agree or Disagree"</span>,<span class="st">"Somewhat Agree"</span>, <span class="st">"Strongly Agree"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addNA</span>(orderedq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>orderedq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Strongly Disagree"</span>, <span class="st">"Somewhat Disagree"</span>, <span class="st">"Neither Agree or Disagree"</span>,<span class="st">"Somewhat Agree"</span>, <span class="st">"Strongly Agree"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addNA</span>(orderedq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>agree_questions <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(join_key, agree_apply.post,    agree_comfortable.post, agree_clearanswers.post,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         agree_instr_enthusiasm.post, agree_instr_interaction.post, agree_instr_knowledge.post</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_all</span>(<span class="sc">-</span>join_key, is.na))</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>n_agree_questions <span class="ot">&lt;-</span> <span class="fu">nrow</span>(agree_questions)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>agree_questions <span class="ot">&lt;-</span> agree_questions <span class="sc">%&gt;%</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>join_key, <span class="at">names_to =</span> <span class="st">"Question"</span>, <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Response =</span> <span class="fu">factor</span>(Response, <span class="at">levels =</span> orderedq),</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">Question =</span> <span class="fu">recode</span>(Question,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_apply.post"</span> <span class="ot">=</span> <span class="st">"Can immediatly apply </span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="st"> what they learned"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_comfortable.post"</span> <span class="ot">=</span> <span class="st">"Comfortable learning in </span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="st"> the workshop environment"</span>,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_clearanswers.post"</span> <span class="ot">=</span> <span class="st">"Got clear answers </span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="st"> from instructors"</span>,</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_instr_enthusiasm.post"</span> <span class="ot">=</span> <span class="st">"Instructors were enthusiastic"</span>,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_instr_interaction.post"</span> <span class="ot">=</span> <span class="st">"Comfortable interacting </span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="st"> with instructors"</span>,</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_instr_knowledge.post"</span> <span class="ot">=</span> <span class="st">"Instructors were knowledgeable </span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="st"> about the material"</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>      ))</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> agree_questions <span class="sc">%&gt;%</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Question, Response, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> n_agree_questions) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_data, <span class="fu">aes</span>(<span class="at">x =</span> Question, <span class="at">y =</span> count, <span class="at">fill =</span> Response)) <span class="sc">+</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>()) <span class="sc">+</span> </span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Strongly Disagree"</span> <span class="ot">=</span> <span class="st">"#d01c8b"</span>, </span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Somewhat Disagree"</span> <span class="ot">=</span> <span class="st">"#f1b6da"</span>, </span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Neither Agree or Disagree"</span> <span class="ot">=</span> <span class="st">"#f7f7f7"</span>, </span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Somewhat Agree"</span> <span class="ot">=</span> <span class="st">"#b8e186"</span>, </span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Strongly Agree"</span> <span class="ot">=</span> <span class="st">"#4dac26"</span>), </span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>                    <span class="at">na.translate =</span> <span class="cn">TRUE</span>, <span class="at">na.value =</span> <span class="st">"#cccccc"</span>, </span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>                    <span class="at">breaks =</span> orderedq, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> text), <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"# respondents (Percentage)"</span>, <span class="at">x =</span> <span class="fu">element_blank</span>(), <span class="at">fill =</span> <span class="st">"Responses"</span>,</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Number of responses: "</span>, n_agree_questions)) <span class="sc">+</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>agree_questions <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(join_key, agree_apply.post,    agree_comfortable.post, agree_clearanswers.post,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         agree_instr_enthusiasm.post, agree_instr_interaction.post, agree_instr_knowledge.post</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_all</span>(<span class="sc">-</span>join_key, is.na))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>n_agree_questions <span class="ot">&lt;-</span> <span class="fu">nrow</span>(agree_questions)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>agree_questions <span class="ot">&lt;-</span> agree_questions <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>join_key, <span class="at">names_to =</span> <span class="st">"Question"</span>, <span class="at">values_to =</span> <span class="st">"Response"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Response =</span> <span class="fu">factor</span>(Response, <span class="at">levels =</span> orderedq),</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">Question =</span> <span class="fu">recode</span>(Question,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_apply.post"</span> <span class="ot">=</span> <span class="st">"Can immediatly apply </span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="st"> what they learned"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_comfortable.post"</span> <span class="ot">=</span> <span class="st">"Comfortable learning in </span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="st"> the workshop environment"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_clearanswers.post"</span> <span class="ot">=</span> <span class="st">"Got clear answers </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="st"> from instructors"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_instr_enthusiasm.post"</span> <span class="ot">=</span> <span class="st">"Instructors were enthusiastic"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_instr_interaction.post"</span> <span class="ot">=</span> <span class="st">"Comfortable interacting </span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="st"> with instructors"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"agree_instr_knowledge.post"</span> <span class="ot">=</span> <span class="st">"Instructors were knowledgeable </span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="st"> about the material"</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      ))</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> agree_questions <span class="sc">%&gt;%</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Question, Response, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> (count <span class="sc">/</span> n_agree_questions) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_data, <span class="fu">aes</span>(<span class="at">x =</span> Question, <span class="at">y =</span> count, <span class="at">fill =</span> Response)) <span class="sc">+</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>()) <span class="sc">+</span> </span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Strongly Disagree"</span> <span class="ot">=</span> <span class="st">"#d01c8b"</span>, </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Somewhat Disagree"</span> <span class="ot">=</span> <span class="st">"#f1b6da"</span>, </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Neither Agree or Disagree"</span> <span class="ot">=</span> <span class="st">"#f7f7f7"</span>, </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Somewhat Agree"</span> <span class="ot">=</span> <span class="st">"#b8e186"</span>, </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Strongly Agree"</span> <span class="ot">=</span> <span class="st">"#4dac26"</span>), </span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>                    <span class="at">na.translate =</span> <span class="cn">TRUE</span>, <span class="at">na.value =</span> <span class="st">"#cccccc"</span>, </span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                    <span class="at">breaks =</span> orderedq, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> text), <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"# respondents (Percentage)"</span>, <span class="at">x =</span> <span class="fu">element_blank</span>(), <span class="at">fill =</span> <span class="st">"Responses"</span>,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Number of responses: "</span>, n_agree_questions)) <span class="sc">+</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -788,17 +827,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, instructor_example.post) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, instructor_example.post) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 94%">
+<col style="width: 6%">
+<col style="width: 93%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -853,6 +892,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">I don’t think it was one particular instructor that helped the experience, but rather that there were people there to represent the many different campus resources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">Provided concrete examples of how to use some of the resources</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">instructors were open to questions at any point during the seminar</td>
 </tr>
 <tr class="odd">
@@ -860,52 +907,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">I think the instructors gave a good job of providing examples of when an individual may need to switch between the different types of computing systems and conceptualized what that would entail in a way that was accessible. I feel more confident in my understanding of research computing and the situations or instances when this resources could be beneficial. More importantly, I am aware of where to go on campus to ask questions and gain access to these resources.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">The instructors did a good job of slowly going through the code and providing a few tips that novices can use.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">The instructors were so familiar with the material that it was hard for them to step outside the mindset of a programmer and see how someone without full training in coding might need additional steps</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I gained more familiarity with the structure of for loops and the instances when a function may be better than a for loop and when using functions in dplyr may actually achieve coding goals quicker than a for loop.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">Any question I had was immediately answered and with enthusiasm, Jean especially was a very enthusiastic and helpful person!</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">No, I did not encounter any accessibility issues. Everything was great, and there were no barriers to my participation.”</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">I am a very slow learner (new to Python; and any language for that matter), Sigrid and Jose were very patient with me. If the material sped along too quickly, they were here to offer support to get me back-on-track.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">hands on help(esp when things went wrong-&gt;stopped me from panicing and shutting down in frustration)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">They were all super attentitve and fast in providing help</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">Great! Helping me determine what coding issues I was encountering rapidly.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">Plenty of people to offer one on one help so it was a very supportive and comfortable working environment that moved at a good slow pace for everyone too follow along. If I ever had trouble, I could put up a yellow sticky note and someone would come work with me to figure out my problem or catch up if I got behind.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">I didn’t show up the second to last day but when I came in the final day, one of the instructors got me all caught up on the code I needed which was super helpful</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Clear slides and familiarity with the topic</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Very engaging presentations by nice presenters!</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">answered my specific questions</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-15-ucsb-containers</td>
 <td style="text-align: left;">There were a couple of moments where the code was not working, and they found the solution every time.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">one on one time and super friendly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">They had clear and concise lessons and had an effective system for ensuring everyone was keeping up with the material.</td>
 </tr>
 </tbody>
 </table>
@@ -918,16 +985,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for all respondents (only_matched=FALSE)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>},</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for all respondents (only_matched=FALSE)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">FALSE</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -940,16 +1007,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for only matched respondents in pre and post (only_matched=TRUE)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>},</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean scores and make graph for only matched respondents in pre and post (only_matched=TRUE)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>mean_nresp <span class="ot">&lt;-</span> <span class="fu">get_mean_scores_nresp</span>(results, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_pre_post</span>(mean_nresp<span class="sc">$</span>mean_scores, mean_nresp<span class="sc">$</span>n_resp_pre, mean_nresp<span class="sc">$</span>n_resp_post, mean_nresp<span class="sc">$</span>n_resp_pre_post, <span class="at">only_matched=</span><span class="cn">TRUE</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">error =</span> <span class="cf">function</span>(cond) {</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Could not do the plots as there are no pre or post results to show"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -965,17 +1032,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_strengths.post) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_strengths.post) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 90%">
+<col style="width: 10%">
+<col style="width: 89%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1030,6 +1097,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">I think the workshop did a good job of introduction to all of the campus resources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">Synthesizing information. Providing examples. Starting from the basics.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">great overview of campus resources</td>
 </tr>
 <tr class="odd">
@@ -1037,52 +1112,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">I think the workshop was paced well and each “part” got adequate time to explain and step through.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">The opportunity to see R in action and think through how to solve problems. There was help when you needed it.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">friendly, responsive to questions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I liked that the workshop alternated instructors to provide variety in the way information was shared and taught. I appreciated that there were challenges and also a short break during the workshop.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">Covers a wide range of python functions and usage</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">nothing</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">Computer literacy! A safe space for learning something new! Expanding my understanding of terminology used regularly in my work setting! Highly recommend to others (even if not planning to use regularly it’s really great to have a better understanding of programming).</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">i loved it all tbh</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">helping us navigate step-by-step with the functions and building up from every episode. the way it was organized throughout 4 days really helped. Perhaps it could be spread out into more days even.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">Instructors &amp; Pacing</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">Lots of staff to help troubleshoot and interesting data. Also explored a variety of data types</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">This workshop really helped me with ggplot. I know so much now</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-15-ucsb-containers</td>
 <td style="text-align: left;">clear document to follow</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Exposure to the levels of computing available at UCSB</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">It felt approachable and general enough for all of the different backgrounds that the attendees had. Listed resources that folks could go to for additional help.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-15-ucsb-containers</td>
 <td style="text-align: left;">The material to follow the workshop.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">just glad you have them. keep em coming</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">Simple yet effective lessons, used real world data with practical applications as a basis for example.</td>
 </tr>
 </tbody>
 </table>
@@ -1095,17 +1190,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_improved.post) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, workshop_improved.post) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 91%">
+<col style="width: 5%">
+<col style="width: 94%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1152,6 +1247,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">I think the workshop did not do enough to demystify some of the work that goes into a user using one of these campus resources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">A lot of information was given, but I feel that focusing on one specific resource and navigating it could have been more practical.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">The last part of the workshop had a lot of things written in the slides, I don’t think it was that clear what we should take away from it.</td>
 </tr>
 <tr class="odd">
@@ -1163,52 +1266,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Examples of past research projects that used these resources could add more context for each computing resource.</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I have a lot of experience with data analysis (in another coding language), so I was able to follow pretty closely what was going on. I felt like others might not have had as much experience, so they were lost as to what the goal of some of the commands were. It might be good to think carefully about where some people might not know what the goal of a command is. Perhaps you expect people to come in with that knowledge, which is fine, but it was the sense I got from some of the questions that were asked.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">if an instructor was coming from a non-coding background they might be able to present the material in a different way. Also it was hard for me to think about immediate applications for my data project. I would like to come prepared with my own data and write code that is pertinent, as i had a hard time making the leap of how I would apply it easily</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I think something that could be useful for folks to walk away with are more examples utilizing for loops, functions and if and else statements. So maybe, creating like a part 2 for the workshop to get into more details and examples.</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">I found the workshop to be very informative and engaging. However, one potential improvement could be providing more time for Q&amp;A or group discussions to allow for deeper exploration of the topics. Additionally, having more interactive activities could enhance participant engagement</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
 <td style="text-align: left;">N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">more days:)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">I would consider adding one more day, the last day felt a bit rushed in the last part. Explain the functions in more details, for instance, why we are using a function in a certain line – sometimes this was said, but not often.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">More checkpoints through out the workshop</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">Explain certain acronyms or functions a little better when we use them even if they were explained once a few days ago</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-23-ucsb-geospatial</td>
 <td style="text-align: left;">I think we should copy and paste code more often because it was a bit tedious especially with all the ggplot setup</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-01-15-ucsb-containers</td>
 <td style="text-align: left;">a bit long, but seems necessary to be this long</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">On of the speakers spoke fast and was harder to follow and some words were unclear, I would say speak slower and distinctly.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Maybe splitting up into groups for Q&amp;A session for folks that had questions about CSC, HPC, data storage, etc.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025-01-15-ucsb-containers</td>
 <td style="text-align: left;">More applied examples of how to work in a project with big data sets and share the projects.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">more of them, evenings might also be good</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">I understand the focus was on developing coding skills, but I hope in future lessons we’re able to follow through on the example to see the end result of the practical application for the skills we’ve learned.</td>
 </tr>
 </tbody>
 </table>
@@ -1221,31 +1344,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>orderedq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>nps <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(recommend_group.post, recommende_score.post, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">recommend_group.post =</span> <span class="fu">factor</span>(recommend_group.post, <span class="at">levels =</span> orderedq),</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">percent =</span> (count<span class="sc">/</span><span class="fu">sum</span>(count)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>nps <span class="sc">%&gt;%</span> </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>recommende_score.post, <span class="at">y=</span>count, <span class="at">fill=</span>recommend_group.post)) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span> <span class="ot">=</span> <span class="st">"#af8dc3"</span>, <span class="st">"Passive"</span> <span class="ot">=</span> <span class="st">"#f7f7f7"</span>, <span class="st">"Promoter"</span> <span class="ot">=</span> <span class="st">"#7fbf7b"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>), <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPS Score"</span>, <span class="at">y =</span> <span class="st">"# respondents"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Number of responses: "</span>, <span class="fu">sum</span>(nps<span class="sc">$</span>count), <span class="st">"</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean score: "</span>, <span class="fu">format</span>(<span class="fu">weighted.mean</span>(nps<span class="sc">$</span>recommende_score.post, nps<span class="sc">$</span>count), <span class="at">digits =</span> <span class="dv">3</span>))) <span class="sc">+</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>),</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(nps<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>orderedq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>nps <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(recommend_group.post, recommende_score.post, <span class="at">name =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">recommend_group.post =</span> <span class="fu">factor</span>(recommend_group.post, <span class="at">levels =</span> orderedq),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">percent =</span> (count<span class="sc">/</span><span class="fu">sum</span>(count)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">text =</span> <span class="fu">sprintf</span>(<span class="st">"%.0f (%.0f%%)"</span>, count, percent))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>nps <span class="sc">%&gt;%</span> </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>recommende_score.post, <span class="at">y=</span>count, <span class="at">fill=</span>recommend_group.post)) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span> <span class="ot">=</span> <span class="st">"#af8dc3"</span>, <span class="st">"Passive"</span> <span class="ot">=</span> <span class="st">"#f7f7f7"</span>, <span class="st">"Promoter"</span> <span class="ot">=</span> <span class="st">"#7fbf7b"</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Detractor"</span>, <span class="st">"Passive"</span>, <span class="st">"Promoter"</span>), <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> text, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>), <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">size=</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPS Score"</span>, <span class="at">y =</span> <span class="st">"# respondents"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Number of responses: "</span>, <span class="fu">sum</span>(nps<span class="sc">$</span>count), <span class="st">"</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean score: "</span>, <span class="fu">format</span>(<span class="fu">weighted.mean</span>(nps<span class="sc">$</span>recommende_score.post, nps<span class="sc">$</span>count), <span class="at">digits =</span> <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>),</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(nps<span class="sc">$</span>count)<span class="sc">*</span><span class="fl">1.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1261,17 +1384,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, suggest_topics.post) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workshop) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(workshop, suggest_topics.post) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 88%">
+<col style="width: 9%">
+<col style="width: 90%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1306,6 +1429,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">I feel like it might be helpful to have something like an office hours for these types of computational resources where people can get help with specific issues. I don’t exactly know how this would work in practice.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
+<td style="text-align: left;">More hands-on the doing. More practical on how to use a specific resource. It could be a series of workshops to make people familiar with a resource that helps their needs (after this first workshop that was introductory and showing all the different resources).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Introduction to python</td>
 </tr>
 <tr class="even">
@@ -1319,6 +1450,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td style="text-align: left;">2025-02-03-ucsb-computing</td>
 <td style="text-align: left;">Bayesian modeling in R</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">Any useful and potentially complex commands could be good to focus on. I thought that this was well-paced and didn’t try to do too much. I found it helpful.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">programming for non-programmers? :)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025-01-14-ucsb-python</td>
@@ -1367,6 +1506,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td style="text-align: left;">2025-01-15-ucsb-containers</td>
 <td style="text-align: left;">More workshops.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">none at this time, thank you</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-02-18-ucsb-intermediater</td>
+<td style="text-align: left;">Intermediate / advanced topics pertaining to geospatial and environmental data analysis. Combining R with geospatial softeare like ArcGIS and QGIS. Rendering models and point clouds from photogrammetric / LiDAR survey. Data collection and preparation of raw sensor data.</td>
 </tr>
 </tbody>
 </table>
