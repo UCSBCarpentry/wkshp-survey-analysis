@@ -1,0 +1,15 @@
+---
+format: html
+editor: visual
+---
+  
+# Report for all Spring 2025 workshops
+  
+-   [2025 Spring - All Workshops](2025-spring-all.html)
+
+## Reports by Workshop
+
+-   [2025-04-16 Gitcollab](2025-04-16-spring-gitcollab.html)
+-   [2025-04-14 Git](2025-04-14-spring-git.html)
+-   [2025-04-11 Shell](2025-04-11-spring-shell.html)
+-   [2025-04-10 Shell](2025-04-10-spring-shell.html)
