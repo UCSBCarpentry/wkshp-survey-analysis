@@ -20,7 +20,7 @@ library(bsicons)
 source("scripts/helper_functions.R")
 
 # list of workshop IDs to filter results
-workshops <- c("2025-04-16-ucsb-gitcollab", "2025-04-14-ucsb-git", "2025-04-11-ucsb-shell", "2025-04-10-ucsb-shell")
+workshops <- c("2025-05-01-ucsb-r", "2025-04-29-ucsb-computing", "2025-04-16-ucsb-gitcollab", "2025-04-14-ucsb-git", "2025-04-11-ucsb-shell", "2025-04-10-ucsb-shell")
 
 results <- read_csv("data-joined/all_workshops.csv") %>% 
   filter(workshop %in% workshops)

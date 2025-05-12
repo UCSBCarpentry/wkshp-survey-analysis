@@ -9,6 +9,8 @@ editor: visual
 
 ## Reports by Workshop
 
+-   [2025-05-01 R](2025-05-01-spring-r.html)
+-   [2025-04-29 Computing](2025-04-29-spring-computing.html)
 -   [2025-04-16 Gitcollab](2025-04-16-spring-gitcollab.html)
 -   [2025-04-14 Git](2025-04-14-spring-git.html)
 -   [2025-04-11 Shell](2025-04-11-spring-shell.html)

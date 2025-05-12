@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/helper_functions.R"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># list of workshop IDs to filter results</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>workshops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2025-04-16-ucsb-gitcollab"</span>, <span class="st">"2025-04-14-ucsb-git"</span>, <span class="st">"2025-04-11-ucsb-shell"</span>, <span class="st">"2025-04-10-ucsb-shell"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>workshops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2025-05-01-ucsb-r"</span>, <span class="st">"2025-04-29-ucsb-computing"</span>, <span class="st">"2025-04-16-ucsb-gitcollab"</span>, <span class="st">"2025-04-14-ucsb-git"</span>, <span class="st">"2025-04-11-ucsb-shell"</span>, <span class="st">"2025-04-10-ucsb-shell"</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-joined/all_workshops.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(workshop <span class="sc">%in%</span> workshops)</span>
@@ -236,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-people-fill " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Total responses</p>
-<p class="value-box-value">26</p>
+<p class="value-box-value">80</p>
 </div>
 </div>
 </div>
@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-expand-vertical " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path d="M8 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2ZM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8Z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Both pre- and post-</p>
-<p class="value-box-value">4</p>
+<p class="value-box-value">25</p>
 </div>
 </div>
 </div>
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrow-left-short " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Only pre-workshop</p>
-<p class="value-box-value">22</p>
+<p class="value-box-value">38</p>
 </div>
 </div>
 </div>
@@ -278,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="value-box-showcase html-fill-item html-fill-container"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrow-right-short " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path></svg></div>
 <div class="value-box-area html-fill-item html-fill-container">
 <p class="value-box-title">Only post-workshop</p>
-<p class="value-box-value">0</p>
+<p class="value-box-value">17</p>
 </div>
 </div>
 </div>
@@ -547,6 +547,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">2025-04-14-ucsb-git</td>
 <td style="text-align: left;">I am looking forward to learning the basics of Git and GitHub in a group setting from the awesome DREAM Lab Team!</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Unix Shell</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">I hope to gain confidence in Git and Github to where it is no longer confusing</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">learning how to use github correctly without overwriting my lab’s established code. overall want to feel more confident and competent at using and understanding github</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I want to be a data scientist, so I think it is really important to understand Unix systems</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">How to work more efficiently with GitHub and work collaboratively with others</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">I hope to learn what Git and GitHub are, how to install them, and how to use them in a way that will enhance rather than disrupt my workflow.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Basic grasp of what Git and Github are, and their applications.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">i want to get a basic knowledge of this software.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">To understand what Git is and how to use it</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">I hope to learn the basics and how to better use GitHub since I only have brief knowledge of a professor showing me the basics and learning on my own.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Gain confidence to using github independently</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">I am hoping to learn the best practices for collaborating with GitHub and creating reproducible data with good file management.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">some github skills that I didn’t learn before</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">develop my knowledge of Git</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">How to commit and/or update code when working on teams and fix conflicts</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">how to collaborate more efficiently</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">I want to be proficient in R</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">neural connectome data analysis requires R interface - I want to do it myself instead of asking other people for help all the time!</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">how to use clusters to run R/stan for statistical computing.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">UCSB computing resources for HPC work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">Learning how to best analyze data for the social sciences, in quick and efficient way.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">I need to do next school year a research and need to put data into R and want to learn how to do it and read it and what you can get out of the data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">I want to learn R language for my future course (EEMB 146) and can apply them in my work</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">become familiar with ggplot 2 and tidyverse</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">learn how to code</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -636,8 +736,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 91%">
+<col style="width: 3%">
+<col style="width: 96%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -651,6 +751,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">It was a smaller class, so it was nice to have that one-on-one feeling. I am not very knowledgeable about this subject and felt comfortable asking basic questions or further explanation on jargon. Both Seth and Jose were great!</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Loved having the opportunity to ask extra questions in the chat to go a little deeper without disrupting the presenters since there were multiple instructors. This was nice bc in person that wouldn’t have been an option! Got some nice extra information about specific questions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I appreciated the react function in zoom allowing me to let the instructors know when I was experiencing issues. They always made sure to pause and help me troubleshoot so I continue following along.</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">Jose helped me get un-stuck so I could catch up with the real-time examples the other instructor was presenting</td>
 </tr>
@@ -659,11 +767,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">They noticed I was struggling and came to help me with the commands</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I was a little slow catching in that you have time be in the folder or directory in order to perform actions on it. The instructors were patient and made sure to walk through the commands again if we did not understand. I really appreciated that as it made the conference a safe space for literally ALL attendees.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">Very responsive to questions</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">The instructors were very quick to answer questions in chat and out loud. This made it very easy to catch up if you fell behind.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Jose is a great resource. He helped make sure we were prepared before the workshop began by having the room open from 9 AM. I really appreciated that! He answers questions clearly and kindly.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Very enthusiastic and helpful also gave helpful tips and tricks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Open to answering questions and had a breakroom to work on issues a student was having one on one.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Instructors affected my learning experience by:</td>
+</tr>
 </tbody>
 </table>
+<p>–&nbsp;Rushing through material, resulting in me feeling lost, confused, and inept; –&nbsp;Audibly talking to one another about worrying that they were running overtime, undermining confidence in the workshop and instilling a sense of shame in me for not understanding more quickly; – Acting confused by questions about morals, ethics, and privacy, implicitly dismissing students’ concerns about such; – Repeatedly modifying instructions immediately given with accompanying warnings about how following the instruction incorrectly would result in negative consequences, creating uncertainty and fear about whether an instruction was safe to follow or would harm a student’s device | |2025-04-14-ucsb-git |All the instructors at the workshop were really friendly and helped me when I had questions and issues with the tasks - thanks to José and Jairo in particular! | |2025-04-16-ucsb-gitcollab |I gained a better understanding of what a fork is and in what instances you may want to use a fork(s) when collaborating | |2025-04-16-ucsb-gitcollab |The activities were clearly structured and well organised and the instructors were friendly, knowledgeable, and helpful | |2025-04-16-ucsb-gitcollab |I gained a better understanding of what a fork is and in what instances you may want to use a fork(s) when collaborating | |2025-05-01-ucsb-r |Tess sat next to me and was very quick to respond to my whispered questions | |2025-05-01-ucsb-r |answered questions patiently | |2025-05-01-ucsb-r |if I got stuck they helped me | |2025-05-01-ucsb-r |I shared an R assistant with one other student – incredible to have that much attention and help available! I had several questions and all were answered by the tutor or the instructor. Thank you for moving so slow, it was the right pace for a beginner. | |2025-04-11-ucsb-shell |Answered any questions I had, and made sure no one was behind, so everyone was on the same page | |2025-04-11-ucsb-shell |I had a nested folder for shell-lesson-data that they were able to help me discover to get to the files I needed for the course. The were able to figure this out for me quickly so I could continue on with the course. | |2025-04-10-ucsb-shell |I sat next to one and his answers were quick and correct to the questions I had | |2025-04-14-ucsb-git |Clarified the differences between initializing inside the terminal vs outside and the consequences of doing so | |2025-04-14-ucsb-git |Having an instructor seated at my table was great to have immediately help when I ran into a computer issue | |2025-04-14-ucsb-git |Having the sticky notes made it easier to communicate when I had problems | |2025-04-16-ucsb-gitcollab |Getting lots of opportunities to ask questions about what we were doing and making sure I understood what was happening | |2025-04-29-ucsb-computing |They are super friendly! | |2025-04-29-ucsb-computing |I asked about Jupyter notebook and i’ve got the answer . | |2025-04-29-ucsb-computing |always available to answer questions | |2025-05-01-ucsb-r |they always come right away to help when I had questions |</p>
 </div>
 </div>
 </div>
@@ -729,8 +862,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 94%">
+<col style="width: 6%">
+<col style="width: 93%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -744,6 +877,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">I like the github worksheet that summarizes the workshop. They gave a lot of information in a short amount of time so this was helpful to keep track.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Easy to follow, digestible, clear, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">The repetition of commands was very helpful in learning how to interact with the interface.</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">Clear organized lectures and notes/exercise files. Small enough # of students that I think everybody got to ask their questions and get help when they needed it. Instructors are clear and helpful.</td>
 </tr>
@@ -752,8 +893,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">It is good to do this in person and see the instructor doing the commands and trying to follow along. Then you can practice later to see if you can remember it. It is good how much information they are able to share during the workshop and they have a website you can refer to later. It really helped to have people around that are comfortable with the software.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I liked that the instructors encouraged questions and were very patient. I also liked that the kesson was published to practice ahead of time. I regret not taking advantage of this feature.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">Highly applicable to so many different things</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Instructors were very approachable with questions, knowledgeable about the subject, and very friendly.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Knowledgable instructors, good system for getting help (love the sticky notes), and amble time to ask and answer questions. Overall 10/10!</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Interactive, easy to follow along. Prefer the zoom environment</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">A strength of the workshop was simulcasting the instructor’s screen on screens at every table. Being able to see the instructor’s command line and try to follow along at least helped a little bit.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Clear tasks, well organised,</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Enthusiasm of instructors and the workshop materials</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">The questions got answers clearly. The pace is just right.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Presentation and knowledge of the instructors</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Enthusiasm of instructors and the workshop materials</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">instructors very attentive</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">it was a start. the one-to-one help was generous.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">see how codes work and what which word is doing</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">1) High number of table tutors so it was like a 1:1 or 1:2 ratio of tutor to student. ; 2) Slow pace; 3) Kind and approachable instructors; 4) Access to the lessons online to review or since I missed one day</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">good information to learn, instructors interact with students and tries their best to answer questions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">We learned many different actions that can be performed in the terminal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-10-ucsb-shell</td>
+<td style="text-align: left;">Really slow</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Patience of instructors</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">I really enjoyed learning more about GitHub and seeing how I can upload directly to GitHub from my device.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Getting the basics of GIt and understanding when and why to use GIt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">The major strengths of this workshop was highlighting just how useful Git and Github can be for collaborative projects that require people to be able to maintain version history</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">Introduce a resource to university community that they might not know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">Well organized and answered some of my questions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">Exposure to the different options and a brief introduction of how to apply them</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">good demonstration of capabilities of our computing system and staff expertise</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">a lot of resources on their website and a lot of instructors there to help</td>
 </tr>
 </tbody>
 </table>
@@ -775,8 +1020,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 91%">
+<col style="width: 1%">
+<col style="width: 98%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -790,12 +1035,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">The instructors went really fast and it was easy to get behind because while some understood right away, others who were struggling needed help while they were still giving information. Some of the helpers didn’t seem to be helping.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Im left slightly unsatisfied with how I would use these - it seems like maybe it would be easier to just open the folders and make changes directly but maybe there are times where you can’t do that? That extra context would be nice. I did learn a lot about file navigation though and that will be great for when I’m pushing and pulling to github on my terminal as before this workshop I wasn’t very effective at that navigation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">The beginning of the workshop moved very quickly. It would be helpful especially during the start for beginners if the instructor paused so I could read the commands they typed before the executed the command.; Also, viewing the Windows interface was much easier than the mac because of the color coding, so I would have preferred to have seen that interface the entire time.</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">It’s hard to get the pace right. The first hour or so was awfully slow and then the more complicated stuff at the end was rushed.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">For me, I have no background with the terminology. I think it is a great workshop but just harder for me since I was slower to understand the new information.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I had a hard time managing the ’ thumbs up’ feature when asked. I found I could either follow, or respond. Again, I need to invest in another screen which would make this easier. I have a tiny laptop screen.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I am not sure if it was beyond the scope of the workshop, but I thought it would have been helpful to see some applications of why I would use the shell instead of the GUI. I feel like the things I learned today (moving between directories, renaming files, copying files, etc.) I could’ve just done easier in the GUI.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">No notes!</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">The workshop could be improved in the following ways (nonexhaustive):; ; -&nbsp;Be more prepared for student confusion, especially in a workshop advertised as being suitable for beginners.; -&nbsp;Instruct more clearly, using sentences that don’t require immediate caveats for fear of prompting a student to do something catastrophic to their computers; - Understand Git and GitHub more thoroughly. More than once, instructors confessed their ignorance about how to answer seemingly elementary questions about the programs. They seemed to know how to plug commands into Git but not how or why any of it worked.; –&nbsp;Explain the utility of Git and GitHub. The case for why or how these tools improve upon information management practices students might already be using was rarely made persuasively.; – Teach students how to protect their privacy from malicious actors. In an age of “cyber stalking,” “doxxing,” and grassroots fascist threats (and even violence) against people in higher education, I was frankly flabbergasted by the instructors’ devil-may-care attitude toward students connecting themselves to an open-access repository from which information seemingly cannot readily be deleted.; -&nbsp;Divest from tools that depend on Large Language Models (LLMs, sometimes spuriously called “AI”). UCSB is a university committed to learning, and no educational entity should encourage students to use plagiarism machines that discourage critical thinking.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">It was confusing and the end was rushed - I couldn’t tell what application was being used or how I would apply it</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">1) Grounding participants in task and workflow. There were different instruction materials and when lost or behind it was hard to determine which materials to use to get back on track.; 2) At times hard to concentrate on the instructor instructions due to many task and side conversations happening at once ; ; Maybe having one source of instruction or if there are multiple follow one and tell students which workshop material to follow since at times these instructions deviated and at times hard to tell which material was the default and at what point in time a different solution/ alternative method was being used.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">1) Grounding participants in task and workflow. There were different instruction materials and when lost or behind it was hard to determine which materials to use to get back on track.; 2) At times hard to concentrate on the instructor instructions due to many task and side conversations happening at once ; ; Maybe having one source of instruction or if there are multiple follow one and tell students which workshop material to follow since at times these instructions deviated and at times hard to tell which material was the default and at what point in time a different solution/ alternative method was being used.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">more coding</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">it’s a lot to learn. customizing/matching it to the kind of analysis I want to do was challenging. people came in at many levels and some things were distracting. I’m not sure how it could be improved - it was a start.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">having interactive examples</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">maybe more on data that we get to see first where it is coming from</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">When I look at internships for social science research, they ask for knowledge of specific packages… tidyverse, ggplot are super common. Maybe focusing on developing or showing us how to build a cheatsheet of how to document where to list what diff packages are used for so we can refer to it quickly for interviews or our own work.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I think it was great. I liked the breaks in the middle.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Sometimes it went a bit quickly, particularly when multiple lines of code were needed for an exercise. I was usually able to catch up though!</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-10-ucsb-shell</td>
+<td style="text-align: left;">Really slow</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">It would be helpful if there was some time at the beginning to elaborate on some of the vocabulary (commits, staging, adds, etc). I felt like it wasn’t clear to me until the very end exactly what I was doing/trying to do. Also, I still do not feel clear on which of the setup steps of connecting GitBash to the online GitHub need to be completed during each start up of the software vs now it is setup and I do not need to recreate the keys.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">list of commands of Git</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Giving more time for breaks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">People typically program in one language, not mixing the programming language would be better. Longer workshop with hands on exercise would be helpful when describing the HPC resource and parallel computing.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">Consider restructuring this series: all R users, all jupyter users, etc. I only use R for my research, so a more thorough workshop on how to accomplish these tasks using R would have been more beneficial than just the first few minutes of the workshop.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">more complete walk-through of preparing, submitting, and receiving results from a job</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">sometimes im confused by what each function means</td>
 </tr>
 </tbody>
 </table>
@@ -857,8 +1202,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 88%">
+<col style="width: 8%">
+<col style="width: 91%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -872,12 +1217,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Would be cool to have a masterclass on excel.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-04-10-ucsb-shell</td>
-<td style="text-align: left;">Maybe a Part 2 of this class. I’m looking forward to the one on interacting with APIs for people who are bad at programming I mean working on getting better at programming.</td>
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Im looking forward to the upcoming R/Python text analysis workshop!</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2025-04-10-ucsb-shell</td>
+<td style="text-align: left;">Maybe a Part 2 of this class. I’m looking forward to the one on interacting with APIs for people who are bad at programming I mean working on getting better at programming.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-10-ucsb-shell</td>
 <td style="text-align: left;">No : )</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">I am not sure, but I wish all instructors were as helpful and kind as you! I will try to attend another one.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Sourcing data for research projects, navigating archival data, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">– How to protect our information online; – How to protect our scholarship and other work from piracy, especially by Large Language Models (LLM, sometimes misleadingly called “AI”); –&nbsp;The ethical and academic dangers of Large Language Models (LLM, sometimes misleadingly called “AI”)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">I think there needs to be a bit more explanation for why we are doing what we’re doing</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">Open refine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Workshop focused solely on github and Rstudio collaborations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">intermediate python programming</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">Workshop focused solely on github and Rstudio collaborations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">work with a dataset about sharks</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">I like the one-on-one help option.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">hands-on cluster computing workshop with real examples</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">no</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-05-01-ucsb-r</td>
+<td style="text-align: left;">Can you have examples for social science research used – datasets, how to present data in descriptive tables, descriptive statistics,etc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">No.&nbsp;It was good.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-11-ucsb-shell</td>
+<td style="text-align: left;">Nope!</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-10-ucsb-shell</td>
+<td style="text-align: left;">Go like 25% faster</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-14-ucsb-git</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-16-ucsb-gitcollab</td>
+<td style="text-align: left;">CRM Workshop</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">Use of HPC and parallel computation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">A more in depth tutorial for each application</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025-04-29-ucsb-computing</td>
+<td style="text-align: left;">Python for ArcGIS</td>
 </tr>
 </tbody>
 </table>
