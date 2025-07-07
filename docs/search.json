@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "What is this?",
     "section": "",
-    "text": "This site provides de-identified survey responses from learners who attended UCSB Library Carpentry workshops.\nSource code and data are available in the GitHub repo.\n\n\n\n2025 Spring\n2025 Winter\n2024 Fall\n2024 Summer\n2024 Spring\n2024 Winter\n2023 Fall\n2023 Spring\n2023 Winter\n2022 Fall\n2022 Summer\n2022 Spring"
+    "text": "This site provides de-identified survey responses from learners who attended UCSB Library Carpentry workshops.\nSource code and data are available in the GitHub repo.\n\n\n\n2025 Summer\n2025 Spring\n2025 Winter\n2024 Fall\n2024 Summer\n2024 Spring\n2024 Winter\n2023 Fall\n2023 Spring\n2023 Winter\n2022 Fall\n2022 Summer\n2022 Spring"
   },
   {
     "objectID": "index.html#reports-by-quarter",
     "href": "index.html#reports-by-quarter",
     "title": "What is this?",
     "section": "",
-    "text": "2025 Spring\n2025 Winter\n2024 Fall\n2024 Summer\n2024 Spring\n2024 Winter\n2023 Fall\n2023 Spring\n2023 Winter\n2022 Fall\n2022 Summer\n2022 Spring"
+    "text": "2025 Summer\n2025 Spring\n2025 Winter\n2024 Fall\n2024 Summer\n2024 Spring\n2024 Winter\n2023 Fall\n2023 Spring\n2023 Winter\n2022 Fall\n2022 Summer\n2022 Spring"
   },
   {
     "objectID": "2025-winter-all.html",
@@ -6270,5 +6270,117 @@
     "title": "Spring 2025 Shell Workshop Survey Responses",
     "section": "Current occupation / Career stage",
     "text": "Current occupation / Career stage\n\n\nCode\nocup &lt;- results %&gt;% select(occupation.pre) %&gt;% \n  separate_rows(occupation.pre, sep=\",\") %&gt;%\n  mutate(occupation.pre = str_trim(occupation.pre)) %&gt;%\n  count(occupation.pre, name = \"count\") %&gt;% \n  drop_na() %&gt;% \n  mutate(percent = (count / (n_total - n_post)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(ocup, aes(y=reorder(occupation.pre, count), x=count)) +\n    geom_col() +\n    geom_label(aes(label = text, hjust = -0.1),\n               size = 3) +\n    labs(x = \"# respondents\", y = element_blank()) + \n    theme_minimal() +\n    theme(\n      panel.grid.minor = element_blank(),\n      panel.grid.major.y = element_blank()\n      ) +\n    expand_limits(x = c(0,max(ocup$count)*1.2))"
+  },
+  {
+    "objectID": "2025-summer-index.html",
+    "href": "2025-summer-index.html",
+    "title": "UCSB Carpentry Workshop Survey Responses",
+    "section": "",
+    "text": "2025-07-08 Geospatial"
+  },
+  {
+    "objectID": "2025-summer-index.html#reports-by-workshop",
+    "href": "2025-summer-index.html#reports-by-workshop",
+    "title": "UCSB Carpentry Workshop Survey Responses",
+    "section": "",
+    "text": "2025-07-08 Geospatial"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html",
+    "href": "2025-07-08-summer-geospatial.html",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\nlibrary(bslib)\nlibrary(shiny)\nlibrary(bsicons)\nsource(\"scripts/helper_functions.R\")\n\n# list of workshop IDs to filter results\nworkshops &lt;- c(\"2025-07-08-ucsb-geospatial\")\n\nresults &lt;- read_csv(\"data-joined/all_workshops.csv\") %&gt;% \n  filter(workshop %in% workshops)\n  \n# Fix comma separator\nresults &lt;- results %&gt;% \n  mutate(findout_select.pre = str_replace_all(\n  findout_select.pre, \n  \"Twitter, Facebook, etc.\", \n  \"Twitter; Facebook; etc.\"))\n\npre_survey &lt;- results %&gt;%\n  select(ends_with(\".pre\"))\n\npost_survey &lt;- results %&gt;%\n  select(ends_with(\".post\"))\n\nn_pre &lt;- sum(apply(post_survey, 1, function(row) all(is.na(row))))\nn_post &lt;- sum(apply(pre_survey, 1, function(row) all(is.na(row))))\nn_total &lt;- nrow(results)\nn_both &lt;- nrow(results) - n_pre - n_post\n\nlayout_columns(\n  value_box(\n    title = \"Total responses\", value = n_total, ,\n    theme = NULL, showcase = bs_icon(\"people-fill\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  ),\n  value_box(\n    title = \"Both pre- and post-\", value = n_both, , theme = NULL,\n    showcase = bs_icon(\"arrows-expand-vertical\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  ),\n  value_box(\n    title = \"Only pre-workshop\", value = n_pre, ,\n    theme = NULL, showcase = bs_icon(\"arrow-left-short\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  ),\n  value_box(\n    title = \"Only post-workshop\", value = n_post, , theme = NULL,\n    showcase = bs_icon(\"arrow-right-short\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  )\n)\n\n\n\n\n\n\n\n\n\nTotal responses\n9\n\n\n\n\n\n\n\n\n\n\n\n\nBoth pre- and post-\n0\n\n\n\n\n\n\n\n\n\n\n\n\nOnly pre-workshop\n9\n\n\n\n\n\n\n\n\n\n\n\n\nOnly post-workshop\n0"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#number-of-responses",
+    "href": "2025-07-08-summer-geospatial.html#number-of-responses",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\nlibrary(bslib)\nlibrary(shiny)\nlibrary(bsicons)\nsource(\"scripts/helper_functions.R\")\n\n# list of workshop IDs to filter results\nworkshops &lt;- c(\"2025-07-08-ucsb-geospatial\")\n\nresults &lt;- read_csv(\"data-joined/all_workshops.csv\") %&gt;% \n  filter(workshop %in% workshops)\n  \n# Fix comma separator\nresults &lt;- results %&gt;% \n  mutate(findout_select.pre = str_replace_all(\n  findout_select.pre, \n  \"Twitter, Facebook, etc.\", \n  \"Twitter; Facebook; etc.\"))\n\npre_survey &lt;- results %&gt;%\n  select(ends_with(\".pre\"))\n\npost_survey &lt;- results %&gt;%\n  select(ends_with(\".post\"))\n\nn_pre &lt;- sum(apply(post_survey, 1, function(row) all(is.na(row))))\nn_post &lt;- sum(apply(pre_survey, 1, function(row) all(is.na(row))))\nn_total &lt;- nrow(results)\nn_both &lt;- nrow(results) - n_pre - n_post\n\nlayout_columns(\n  value_box(\n    title = \"Total responses\", value = n_total, ,\n    theme = NULL, showcase = bs_icon(\"people-fill\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  ),\n  value_box(\n    title = \"Both pre- and post-\", value = n_both, , theme = NULL,\n    showcase = bs_icon(\"arrows-expand-vertical\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  ),\n  value_box(\n    title = \"Only pre-workshop\", value = n_pre, ,\n    theme = NULL, showcase = bs_icon(\"arrow-left-short\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  ),\n  value_box(\n    title = \"Only post-workshop\", value = n_post, , theme = NULL,\n    showcase = bs_icon(\"arrow-right-short\"), showcase_layout = \"left center\",\n    full_screen = FALSE, fill = TRUE, height = NULL\n  )\n)\n\n\n\n\n\n\n\n\n\nTotal responses\n9\n\n\n\n\n\n\n\n\n\n\n\n\nBoth pre- and post-\n0\n\n\n\n\n\n\n\n\n\n\n\n\nOnly pre-workshop\n9\n\n\n\n\n\n\n\n\n\n\n\n\nOnly post-workshop\n0"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#departments",
+    "href": "2025-07-08-summer-geospatial.html#departments",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Departments",
+    "text": "Departments\n\n\nCode\ndepts &lt;- results %&gt;% select(dept_select.pre) %&gt;% \n  separate_rows(dept_select.pre, sep=\",\") %&gt;%\n  mutate(dept_select.pre = str_trim(dept_select.pre)) %&gt;%\n  count(dept_select.pre, name = \"count\") %&gt;% \n  mutate(percent = (count / (n_total - n_post)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(depts, aes(y=reorder(dept_select.pre, count), x=count)) +\n    geom_col() +\n    geom_label(aes(label = text, hjust = -0.1),\n               size = 3) +\n    labs(x = \"# respondents\", y = element_blank()) +  \n    theme_minimal() +\n    theme(\n      panel.grid.minor = element_blank(),\n      panel.grid.major.y = element_blank()\n      ) +\n    expand_limits(x = c(0,max(depts$count)*1.1))\n\n\n\n\n\n\n\n\n\n\n“Other” Departments\n\n\nCode\nother_depts &lt;- results %&gt;% \n  count(dept_other.pre, name = \"count\") %&gt;% \n  drop_na() %&gt;% \n  mutate(percent = (count / (n_total - n_post)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(other_depts, aes(y=reorder(dept_other.pre, count), x=count)) +\n    geom_col() +\n    geom_label(aes(label = text, hjust = -0.1),\n               size = 3) +\n    labs(x = \"# respondents\", y = element_blank()) + \n    theme_minimal() +\n    theme(\n      panel.grid.minor = element_blank(),\n      panel.grid.major.y = element_blank()\n      ) +\n    expand_limits(x = c(0,max(other_depts$count)*1.1))"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#current-occupation-career-stage",
+    "href": "2025-07-08-summer-geospatial.html#current-occupation-career-stage",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Current occupation / Career stage",
+    "text": "Current occupation / Career stage\n\n\nCode\nocup &lt;- results %&gt;% select(occupation.pre) %&gt;% \n  separate_rows(occupation.pre, sep=\",\") %&gt;%\n  mutate(occupation.pre = str_trim(occupation.pre)) %&gt;%\n  count(occupation.pre, name = \"count\") %&gt;% \n  drop_na() %&gt;% \n  mutate(percent = (count / (n_total - n_post)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(ocup, aes(y=reorder(occupation.pre, count), x=count)) +\n    geom_col() +\n    geom_label(aes(label = text, hjust = -0.1),\n               size = 3) +\n    labs(x = \"# respondents\", y = element_blank()) + \n    theme_minimal() +\n    theme(\n      panel.grid.minor = element_blank(),\n      panel.grid.major.y = element_blank()\n      ) +\n    expand_limits(x = c(0,max(ocup$count)*1.2))"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#motivation---why-are-you-participating-in-this-workshop",
+    "href": "2025-07-08-summer-geospatial.html#motivation---why-are-you-participating-in-this-workshop",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Motivation - Why are you participating in this workshop?",
+    "text": "Motivation - Why are you participating in this workshop?\n\n\nCode\nmotiv &lt;- results %&gt;% select(motivation_select.pre) %&gt;% \n  separate_rows(motivation_select.pre, sep=\",\")  %&gt;% \n  mutate(motivation_select.pre = str_trim(motivation_select.pre)) %&gt;%\n  count(motivation_select.pre, name = \"count\") %&gt;% \n  drop_na() %&gt;% \n  mutate(percent = (count / (n_total - n_post)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(motiv, aes(y=reorder(motivation_select.pre, count), x=count)) +\n    geom_col() +\n    geom_label(aes(label = text, hjust = -0.1),\n               size = 3) +\n    labs(x = \"# respondents\", y = element_blank()) + \n    theme_minimal() +\n    theme(\n      panel.grid.minor = element_blank(),\n      panel.grid.major.y = element_blank()\n      ) +\n    expand_limits(x = c(0,max(motiv$count)*1.2))"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#how-did-you-find-out-about-this-workshop",
+    "href": "2025-07-08-summer-geospatial.html#how-did-you-find-out-about-this-workshop",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "How did you find out about this workshop?",
+    "text": "How did you find out about this workshop?\n\n\nCode\nfindw &lt;- results %&gt;% select(findout_select.pre) %&gt;% \n  separate_rows(findout_select.pre, sep=\",\")  %&gt;% \n  mutate(findout_select.pre = str_trim(findout_select.pre)) %&gt;%\n  count(findout_select.pre, name = \"count\") %&gt;% \n  drop_na() %&gt;% \n  mutate(percent = (count / (n_total - n_post)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(findw, aes(y=reorder(findout_select.pre, count), x=count)) +\n    geom_col() +\n    geom_label(aes(label = text, hjust = -0.1),\n               size = 3) +\n    labs(x = \"# respondents\", y = element_blank()) + \n    theme_minimal() +\n    theme(\n      panel.grid.minor = element_blank(),\n      panel.grid.major.y = element_blank()\n      ) +\n    expand_limits(x = c(0,max(findw$count)*1.2))"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#what-you-most-hope-to-learn",
+    "href": "2025-07-08-summer-geospatial.html#what-you-most-hope-to-learn",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "What you most hope to learn?",
+    "text": "What you most hope to learn?\n\n\nCode\nresults %&gt;% group_by(workshop) %&gt;% \n  select(workshop, hopes.pre) %&gt;% \n  drop_na()\n\n\n\n\n\n\n\n\n\n\nworkshop\nhopes.pre\n\n\n\n\n2025-07-08-ucsb-geospatial\na little something about geospatial +R\n\n\n2025-07-08-ucsb-geospatial\nI want to learn more about how geospatial data can be visualized in R\n\n\n2025-07-08-ucsb-geospatial\nI want to learn to implement the data collection from my research into R and analyze the spatial data\n\n\n2025-07-08-ucsb-geospatial\nI hope to learn more about geospatial analysis in general\n\n\n2025-07-08-ucsb-geospatial\nHoping to gain a good understanding of how to deal with geospatial data\n\n\n2025-07-08-ucsb-geospatial\nI express my 3-4 opinion and I extend my horizons. In 2011 I began to develop activities relative on G.I.S. There are unlimited information.\n\n\n2025-07-08-ucsb-geospatial\nmore comfortable using R"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#learning-environment-in-the-workshop",
+    "href": "2025-07-08-summer-geospatial.html#learning-environment-in-the-workshop",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Learning environment in the workshop",
+    "text": "Learning environment in the workshop\n\n\nCode\norderedq &lt;- c(\"Strongly Disagree\", \"Somewhat Disagree\", \"Neither Agree or Disagree\",\"Somewhat Agree\", \"Strongly Agree\")\naddNA(orderedq)\n\n\n\n\nCode\nagree_questions &lt;- results %&gt;% \n  select(join_key, agree_apply.post,    agree_comfortable.post, agree_clearanswers.post,\n         agree_instr_enthusiasm.post, agree_instr_interaction.post, agree_instr_knowledge.post\n) %&gt;% \n  filter(!if_all(-join_key, is.na))\n\nn_agree_questions &lt;- nrow(agree_questions)\n  \nagree_questions &lt;- agree_questions %&gt;%\n  pivot_longer(cols = -join_key, names_to = \"Question\", values_to = \"Response\") %&gt;% \n  mutate(Response = factor(Response, levels = orderedq),\n         Question = recode(Question,\n                     \"agree_apply.post\" = \"Can immediatly apply \n what they learned\",\n                     \"agree_comfortable.post\" = \"Comfortable learning in \n the workshop environment\",\n                     \"agree_clearanswers.post\" = \"Got clear answers \n from instructors\",\n                     \"agree_instr_enthusiasm.post\" = \"Instructors were enthusiastic\",\n                     \"agree_instr_interaction.post\" = \"Comfortable interacting \n with instructors\",\n                     \"agree_instr_knowledge.post\" = \"Instructors were knowledgeable \n about the material\"\n      ))\n\nsummary_data &lt;- agree_questions %&gt;%\n  count(Question, Response, name = \"count\") %&gt;% \n  mutate(percent = (count / n_agree_questions) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nggplot(summary_data, aes(x = Question, y = count, fill = Response)) +\n  geom_col(position = \"fill\", color = \"black\", show.legend = TRUE) +\n  scale_y_continuous(labels = scales::percent_format()) + \n  scale_fill_manual(values = c(\"Strongly Disagree\" = \"#d01c8b\", \n                               \"Somewhat Disagree\" = \"#f1b6da\", \n                               \"Neither Agree or Disagree\" = \"#f7f7f7\", \n                               \"Somewhat Agree\" = \"#b8e186\", \n                               \"Strongly Agree\" = \"#4dac26\"), \n                    na.translate = TRUE, na.value = \"#cccccc\", \n                    breaks = orderedq, drop = FALSE) +\n  geom_text(aes(label = text), size = 3,\n             position = position_fill(vjust = 0.5)) +\n  labs(y = \"# respondents (Percentage)\", x = element_blank(), fill = \"Responses\",\n       subtitle = paste0(\"Number of responses: \", n_agree_questions)) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1),\n        plot.subtitle = element_text(hjust = 0.5, size = 12))\n\n\nWarning: No shared levels found between `names(values)` of the manual scale and the\ndata's fill values."
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#how-an-instructor-or-helper-affected-your-learning-experience",
+    "href": "2025-07-08-summer-geospatial.html#how-an-instructor-or-helper-affected-your-learning-experience",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "How an instructor or helper affected your learning experience",
+    "text": "How an instructor or helper affected your learning experience\n\n\nCode\nresults %&gt;% \n  group_by(workshop) %&gt;% \n  select(workshop, instructor_example.post) %&gt;%\n  drop_na()\n\n\n\n\n\n\nworkshop\ninstructor_example.post"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#skills-and-perception-comparison",
+    "href": "2025-07-08-summer-geospatial.html#skills-and-perception-comparison",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Skills and perception comparison",
+    "text": "Skills and perception comparison\n\n\nCode\n# Calculate mean scores and make graph for all respondents (only_matched=FALSE)\ntryCatch(\n  {\nmean_nresp &lt;- get_mean_scores_nresp(results, only_matched=FALSE)\ngraph_pre_post(mean_nresp$mean_scores, mean_nresp$n_resp_pre, mean_nresp$n_resp_post, mean_nresp$n_resp_pre_post, only_matched=FALSE)\n},\nerror = function(cond) {\nmessage(\"Could not do the plots as there are no pre or post results to show\")\n}\n)\n\n\nCould not do the plots as there are no pre or post results to show\n\n\n\n\nCode\n# Calculate mean scores and make graph for only matched respondents in pre and post (only_matched=TRUE)\ntryCatch(\n  {\nmean_nresp &lt;- get_mean_scores_nresp(results, only_matched=TRUE)\ngraph_pre_post(mean_nresp$mean_scores, mean_nresp$n_resp_pre, mean_nresp$n_resp_post, mean_nresp$n_resp_pre_post, only_matched=TRUE)\n},\nerror = function(cond) {\nmessage(\"Could not do the plots as there are no pre or post results to show\")\n}\n)\n\n\nCould not do the plots as there are no pre or post results to show"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#workshop-strengths",
+    "href": "2025-07-08-summer-geospatial.html#workshop-strengths",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Workshop Strengths",
+    "text": "Workshop Strengths\n\n\nCode\nresults %&gt;% \n  group_by(workshop) %&gt;% \n  select(workshop, workshop_strengths.post) %&gt;% \n  drop_na()\n\n\n\n\n\n\nworkshop\nworkshop_strengths.post"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#ways-to-improve-the-workshop",
+    "href": "2025-07-08-summer-geospatial.html#ways-to-improve-the-workshop",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Ways to improve the workshop",
+    "text": "Ways to improve the workshop\n\n\nCode\nresults %&gt;% \n  group_by(workshop) %&gt;% \n  select(workshop, workshop_improved.post) %&gt;% \n  drop_na()\n\n\n\n\n\n\nworkshop\nworkshop_improved.post"
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#how-likely-are-you-to-recommend-this-workshop-scale-0---10",
+    "href": "2025-07-08-summer-geospatial.html#how-likely-are-you-to-recommend-this-workshop-scale-0---10",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "How likely are you to recommend this workshop? Scale 0 - 10",
+    "text": "How likely are you to recommend this workshop? Scale 0 - 10\n\n\nCode\norderedq &lt;- c(\"Detractor\", \"Passive\", \"Promoter\")\n\nnps &lt;- results %&gt;% \n  count(recommend_group.post, recommende_score.post, name = \"count\") %&gt;% \n  drop_na() %&gt;% \n  mutate(recommend_group.post = factor(recommend_group.post, levels = orderedq),\n         percent = (count/sum(count)) * 100,\n         text = sprintf(\"%.0f (%.0f%%)\", count, percent))\n\nnps %&gt;% \nggplot(aes(x=recommende_score.post, y=count, fill=recommend_group.post)) +\n  geom_col(color=\"black\", show.legend = TRUE) +\n  scale_fill_manual(values = c(\"Detractor\" = \"#af8dc3\", \"Passive\" = \"#f7f7f7\", \"Promoter\" = \"#7fbf7b\"), breaks = c(\"Detractor\", \"Passive\", \"Promoter\"), drop = FALSE) +\n  geom_label(aes(label = text, vjust = -0.5), fill = \"white\", size= 3) +\n  scale_x_continuous(breaks = 1:10) +\n  labs(x = \"NPS Score\", y = \"# respondents\", subtitle = paste0(\"Number of responses: \", sum(nps$count), \"\n Mean score: \", format(weighted.mean(nps$recommende_score.post, nps$count), digits = 3))) +\n  theme_minimal() +\n  theme(\n    panel.grid.minor = element_blank(),\n    panel.grid.major.x = element_blank(),\n    plot.subtitle = element_text(hjust = 0.5, size = 12)\n  ) +\n  expand_limits(x = c(1,10),\n                y = c(0, max(nps$count)*1.1))\n\n\nWarning in max(nps$count): no non-missing arguments to max; returning -Inf\n\n\nWarning: No shared levels found between `names(values)` of the manual scale and the\ndata's fill values."
+  },
+  {
+    "objectID": "2025-07-08-summer-geospatial.html#topic-suggestions",
+    "href": "2025-07-08-summer-geospatial.html#topic-suggestions",
+    "title": "Summer 2025 Geospatial Workshop Survey Responses",
+    "section": "Topic Suggestions",
+    "text": "Topic Suggestions\n\n\nCode\nresults %&gt;% \n  group_by(workshop) %&gt;% \n  select(workshop, suggest_topics.post) %&gt;% \n  drop_na()\n\n\n\n\n\n\nworkshop\nsuggest_topics.post"
   }
 ]

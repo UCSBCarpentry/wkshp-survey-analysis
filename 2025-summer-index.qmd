@@ -1,0 +1,8 @@
+---
+format: html
+editor: visual
+---
+
+## Reports by Workshop
+
+-   [2025-07-08 Geospatial](2025-07-08-summer-geospatial.html)
