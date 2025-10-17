@@ -2,6 +2,10 @@
 format: html
 editor: visual
 ---
+  
+# Report for all Summer 2025 workshops
+  
+-   [2025 Summer - All Workshops](2025-summer-all.html)
 
 ## Reports by Workshop
 

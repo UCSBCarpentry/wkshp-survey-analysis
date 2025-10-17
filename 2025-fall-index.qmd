@@ -1,0 +1,15 @@
+---
+format: html
+editor: visual
+---
+  
+# Report for all Fall 2025 workshops
+  
+-   [2025 Fall - All Workshops](2025-fall-all.html)
+
+## Reports by Workshop
+
+-   [2025-10-28 Python](2025-10-28-fall-python.html)
+-   [2025-10-14 Git](2025-10-14-fall-git.html)
+-   [2025-10-07 Shell](2025-10-07-fall-shell.html)
+-   [2025-09-16 Python](2025-09-16-fall-python.html)

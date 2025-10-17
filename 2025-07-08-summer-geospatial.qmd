@@ -8,6 +8,7 @@ format:
      df-print: kable
 ---
 
+
 ## Number of responses
 
 ```{r}
@@ -348,3 +349,4 @@ results %>%
   select(workshop, suggest_topics.post) %>% 
   drop_na()
 ```
+
