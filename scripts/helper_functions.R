@@ -103,6 +103,9 @@ format:
      code-fold: true
      message: false
      df-print: kable
+execute:
+  warning: false
+  message: false
 ---
 
 
@@ -179,7 +182,7 @@ ggplot(depts, aes(y=reorder(dept_select.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
-    labs(x = "# respondents", y = element_blank()) +  
+    labs(x = "# respondents") +  
     theme_minimal() +
     theme(
       panel.grid.minor = element_blank(),
@@ -201,7 +204,7 @@ ggplot(other_depts, aes(y=reorder(dept_other.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
-    labs(x = "# respondents", y = element_blank()) + 
+    labs(x = "# respondents") + 
     theme_minimal() +
     theme(
       panel.grid.minor = element_blank(),
@@ -225,7 +228,7 @@ ggplot(ocup, aes(y=reorder(occupation.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
-    labs(x = "# respondents", y = element_blank()) + 
+    labs(x = "# respondents") + 
     theme_minimal() +
     theme(
       panel.grid.minor = element_blank(),
@@ -249,7 +252,7 @@ ggplot(motiv, aes(y=reorder(motivation_select.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
-    labs(x = "# respondents", y = element_blank()) + 
+    labs(x = "# respondents") + 
     theme_minimal() +
     theme(
       panel.grid.minor = element_blank(),
@@ -273,7 +276,7 @@ ggplot(findw, aes(y=reorder(findout_select.pre, count), x=count)) +
     geom_col() +
     geom_label(aes(label = text, hjust = -0.1),
                size = 3) +
-    labs(x = "# respondents", y = element_blank()) + 
+    labs(x = "# respondents") + 
     theme_minimal() +
     theme(
       panel.grid.minor = element_blank(),
@@ -337,7 +340,7 @@ ggplot(summary_data, aes(x = Question, y = count, fill = Response)) +
                     breaks = orderedq, drop = FALSE) +
   geom_text(aes(label = text), size = 3,
              position = position_fill(vjust = 0.5)) +
-  labs(y = "# respondents (Percentage)", x = element_blank(), fill = "Responses",
+  labs(y = "# respondents (Percentage)", fill = "Responses",
        subtitle = paste0("Number of responses: ", n_agree_questions)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),

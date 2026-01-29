@@ -1,0 +1,15 @@
+---
+format: html
+editor: visual
+---
+  
+# Report for all Winter 2026 workshops
+  
+-   [2026 Winter - All Workshops](2026-winter-all.html)
+
+## Reports by Workshop
+
+-   [2026-02-02 Ml](2026-02-02-winter-ml.html)
+-   [2026-01-27 Webscraping](2026-01-27-winter-webscraping.html)
+-   [2026-01-14 R](2026-01-14-winter-r.html)
+-   [2026-01-05 Geospatial](2026-01-05-winter-geospatial.html)

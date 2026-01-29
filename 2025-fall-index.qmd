@@ -10,6 +10,7 @@ editor: visual
 ## Reports by Workshop
 
 -   [2025-10-28 Python](2025-10-28-fall-python.html)
+-   [2025-10-27 Computing](2025-10-27-fall-computing.html)
 -   [2025-10-14 Git](2025-10-14-fall-git.html)
 -   [2025-10-07 Shell](2025-10-07-fall-shell.html)
 -   [2025-09-16 Python](2025-09-16-fall-python.html)
